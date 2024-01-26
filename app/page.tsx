@@ -3,5 +3,5 @@ import { cookies } from "next/headers";
 
 export default async function InitialPage() {
 	const token = cookies().get("token")!.value;
-	token !== "" ? redirect("/home") : redirect("/login");
+	token !== "" && token !== undefined ? redirect("/home") : redirect("/login");
 }
