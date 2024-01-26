@@ -1,6 +1,5 @@
 import { cookies } from "next/headers";
 import Image from "next/image";
-const token = cookies().get("token")!.value;
 
 type Response<Type> = {
 	items: Type[];
@@ -45,6 +44,7 @@ async function fetchTracks(token: string): Promise<Response<Track>> {
 }
 
 export default async function Home() {
+	const token = cookies().get("token")!.value;
 	const profile = await fetchProfile(token);
 	const artists = await fetchArtists(token);
 	const tracks = await fetchTracks(token);
