@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./styles/index.scss";
 
-const inter = Inter({ subsets: ["latin"] });
+const outfit = Outfit({
+	subsets: ["latin"],
+	variable: "--font-primary",
+	display: "swap",
+});
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -15,8 +19,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className={inter.className}>{children}</body>
+		<html
+			className={outfit.variable}
+			lang="en"
+		>
+			<body>{children}</body>
 		</html>
 	);
 }

@@ -1,0 +1,44 @@
+@use "./colors" as color;
+
+body {
+	font-family: var(--font-primary);
+	color: color.$black;
+}
+
+:root {
+	--fs-1: clamp(0.75rem, 0.6741rem + 0.3797vw, 1.125rem); /* 12 - 18*/
+	--fs-2: clamp(1.1719rem, 1.0044rem + 0.8373vw, 1.9988rem); /* 18 - 31*/
+	--fs-3: clamp(1.465rem, 1.2221rem + 1.2146vw, 2.6644rem); /* 23 - 42*/
+
+	--fw-1: 400;
+	--fw-2: 700;
+
+	--lh-1: 1.2;
+	--lh-2: 1.6;
+}
+
+.title {
+	line-height: var(--lh-1);
+	font-weight: var(--fw-2);
+	&--big {
+		@extend .title;
+		font-size: var(--fs-3);
+	}
+	&--small {
+		@extend .title;
+		font-size: var(--fs-2);
+	}
+}
+
+.text {
+	line-height: var(--lh-2);
+	font-weight: var(--fw-1);
+	&--big {
+		@extend .text;
+		font-size: var(--fs-2);
+	}
+	&--small {
+		@extend .text;
+		font-size: var(--fs-1);
+	}
+}

@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import Image from "next/image";
+import style from "./style.module.scss";
 
 type Response<Type> = {
 	items: Type[];
@@ -53,10 +54,11 @@ export default async function Home() {
 	/* console.log(tracks); */
 	return (
 		<div>
-			<h1>Hello, {profile.display_name}</h1>
+			<h1 className={`title--big ${style.title}`}>Hello, {profile.display_name}</h1>
 
 			{
 				<Image
+					className={style.profileImage}
 					src={profile.images[1].url}
 					alt=""
 					width="300"
