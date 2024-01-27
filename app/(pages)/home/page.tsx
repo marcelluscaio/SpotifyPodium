@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import Image from "next/image";
 import style from "./style.module.scss";
+import Title from "@/app/components/ui/Title/Title";
 
 type Response<Type> = {
 	items: Type[];
@@ -54,7 +55,13 @@ export default async function Home() {
 	/* console.log(tracks); */
 	return (
 		<div>
-			<h1 className={`title--big ${style.title}`}>Hello, {profile.display_name}</h1>
+			<Title
+				level="h1"
+				size="big"
+				className={style.title}
+			>
+				Hello, {profile.display_name}
+			</Title>
 
 			{
 				<Image
@@ -65,8 +72,13 @@ export default async function Home() {
 					height="300"
 				/>
 			}
-
-			<h2>Your top artists</h2>
+			<Title
+				level="h2"
+				size="small"
+				className={style.title}
+			>
+				Your top artists
+			</Title>
 			{artists.items.map((artist) => (
 				<div key={artist.name}>
 					<Image
@@ -78,7 +90,13 @@ export default async function Home() {
 					<p>{artist.name}</p>
 				</div>
 			))}
-			<h2>Your top tracks</h2>
+			<Title
+				level="h2"
+				size="small"
+				className={style.title}
+			>
+				Your top tracks
+			</Title>
 			{tracks.items.map((track) => (
 				<div key={track.name}>
 					<Image
