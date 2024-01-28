@@ -9,7 +9,7 @@ export async function GET(req: NextRequest, res: Response) {
 
 	const token = await getToken(code, redirect_uri);
 
-	cookies().set("token", token);
+	cookies().set("token", token, { maxAge: 3600 });
 
 	redirect("/");
 }

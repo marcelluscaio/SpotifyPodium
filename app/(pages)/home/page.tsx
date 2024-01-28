@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import style from "./style.module.scss";
 import Title from "@/app/components/ui/Title/Title";
+import { redirect } from "next/navigation";
 
 type Response<Type> = {
 	items: Type[];
@@ -46,69 +47,73 @@ async function fetchTracks(token: string): Promise<Response<Track>> {
 }
 
 export default async function Home() {
-	const token = cookies().get("token")!.value;
-	const profile = await fetchProfile(token);
-	const artists = await fetchArtists(token);
-	const tracks = await fetchTracks(token);
-	/* console.log(profile); */
-	/* console.log(artists); */
-	/* console.log(tracks); */
-	return (
-		<div>
-			<Title
-				level="h1"
-				size="big"
-				className={style.title}
-			>
-				Hello, {profile.display_name}
-			</Title>
+	try {
+		const token = cookies().get("token")!.value;
+		const profile = await fetchProfile(token);
+		const artists = await fetchArtists(token);
+		const tracks = await fetchTracks(token);
+		/* console.log(profile); */
+		/* console.log(artists); */
+		/* console.log(tracks); */
+		return (
+			<div>
+				<Title
+					level="h1"
+					size="big"
+					className={style.title}
+				>
+					Hello, {profile.display_name}
+				</Title>
 
-			{
-				<Image
-					className={style.profileImage}
-					src={profile.images[1].url}
-					alt=""
-					width="300"
-					height="300"
-				/>
-			}
-			<Title
-				level="h2"
-				size="small"
-				className={style.title}
-			>
-				Your top artists
-			</Title>
-			{artists.items.map((artist) => (
-				<div key={artist.name}>
+				{
 					<Image
-						src={artist.images[1].url}
+						className={style.profileImage}
+						src={profile.images[1].url}
 						alt=""
 						width="300"
 						height="300"
 					/>
-					<p>{artist.name}</p>
-				</div>
-			))}
-			<Title
-				level="h2"
-				size="small"
-				className={style.title}
-			>
-				Your top tracks
-			</Title>
-			{tracks.items.map((track) => (
-				<div key={track.name}>
-					<Image
-						src={track.album.images[1].url}
-						alt=""
-						width="300"
-						height="300"
-					/>
+				}
+				<Title
+					level="h2"
+					size="small"
+					className={style.title}
+				>
+					Your top artists
+				</Title>
+				{artists.items.map((artist) => (
+					<div key={artist.name}>
+						<Image
+							src={artist.images[1].url}
+							alt=""
+							width="300"
+							height="300"
+						/>
+						<p>{artist.name}</p>
+					</div>
+				))}
+				<Title
+					level="h2"
+					size="small"
+					className={style.title}
+				>
+					Your top tracks
+				</Title>
+				{tracks.items.map((track) => (
+					<div key={track.name}>
+						<Image
+							src={track.album.images[1].url}
+							alt=""
+							width="300"
+							height="300"
+						/>
 
-					<p>{track.name}</p>
-				</div>
-			))}
-		</div>
-	);
+						<p>{track.name}</p>
+					</div>
+				))}
+			</div>
+		);
+	} catch (error) {
+		redirect("/login");
+	}
 }
