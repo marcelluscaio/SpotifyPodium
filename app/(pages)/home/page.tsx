@@ -60,7 +60,6 @@ export default async function Home() {
 				<Title
 					level="h1"
 					size="big"
-					className={style.title}
 				>
 					Hello, {profile.display_name}
 				</Title>
@@ -77,7 +76,6 @@ export default async function Home() {
 				<Title
 					level="h2"
 					size="small"
-					className={style.title}
 				>
 					Your top artists
 				</Title>
@@ -95,7 +93,6 @@ export default async function Home() {
 				<Title
 					level="h2"
 					size="small"
-					className={style.title}
 				>
 					Your top tracks
 				</Title>

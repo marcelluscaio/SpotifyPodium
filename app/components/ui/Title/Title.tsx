@@ -4,17 +4,19 @@ import style from "./style.module.scss";
 type Props = {
 	level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 	size: "big" | "small";
-	className: string;
+	align?: "center" | "left";
 };
 
 export default function Title({
 	level,
 	size,
-	className,
+	align = "center",
 	children,
 }: PropsWithChildren<Props>) {
 	const Tag = level;
 	return (
-		<Tag className={`${style.title} title--${size} ${className}`}>{children}</Tag>
+		<Tag className={`${style.title} ${style[align]} title--${size} `}>
+			{children}
+		</Tag>
 	);
 }
