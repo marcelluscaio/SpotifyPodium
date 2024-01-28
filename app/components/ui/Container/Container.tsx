@@ -1,7 +1,7 @@
 import { PropsWithChildren, ComponentProps } from "react";
 import style from "./style.module.scss";
 
-type Tag = "div" | "section";
+type Tag = "div" | "section" | "main";
 
 type ContainerProps = {
 	tag?: Tag;
@@ -9,8 +9,9 @@ type ContainerProps = {
 
 export default function Container({
 	tag = "div",
+	className,
 	children,
 }: PropsWithChildren<ContainerProps>) {
 	const Tag = tag;
-	return <Tag className={style.container}>{children}</Tag>;
+	return <Tag className={`${style.container} ${className}`}>{children}</Tag>;
 }
