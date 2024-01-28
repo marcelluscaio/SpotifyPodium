@@ -1,0 +1,14 @@
+@use "../../../styles/colors";
+@use "../../../styles/typography";
+
+.button {
+	@extend .title--small;
+
+	padding: 0.5em 1em;
+	border-radius: 100vmax;
+	border: 1px solid colors.$black;
+
+	background-color: colors.$green;
+
+	color: colors.$white;
+}

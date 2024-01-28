@@ -1,3 +1,4 @@
+import Button from "@/app/components/ui/Button/Button";
 import Title from "@/app/components/ui/Title/Title";
 
 export default async function Login() {
@@ -9,9 +10,8 @@ export default async function Login() {
 			>
 				Welcome to Spodiumfy!
 			</Title>
-			<h1>Welcome to Spodiumfy!</h1>
 			<form action={"/api/auth"}>
-				<button type="submit">Login</button>
+				<Button type="submit">Login</Button>
 			</form>
 		</main>
 	);
