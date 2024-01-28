@@ -3,6 +3,7 @@ import Image from "next/image";
 import style from "./style.module.scss";
 import Title from "@/app/components/ui/Title/Title";
 import { redirect } from "next/navigation";
+import Container from "@/app/components/ui/Container/Container";
 
 type Response<Type> = {
 	items: Type[];
@@ -55,60 +56,74 @@ export default async function Home() {
 		/* console.log(profile); */
 		/* console.log(artists); */
 		/* console.log(tracks); */
+
 		return (
-			<div>
-				<Title
-					level="h1"
-					size="big"
-				>
-					Hello, {profile.display_name}
-				</Title>
+			<Container
+				tag="main"
+				className={style.main}
+			>
+				<div className={style.user}>
+					<Title
+						level="h1"
+						size="big"
+					>
+						Hello, {profile.display_name}
+					</Title>
 
-				{
-					<Image
-						className={style.profileImage}
-						src={profile.images[1].url}
-						alt=""
-						width="300"
-						height="300"
-					/>
-				}
-				<Title
-					level="h2"
-					size="small"
-				>
-					Your top artists
-				</Title>
-				{artists.items.map((artist) => (
-					<div key={artist.name}>
+					{
 						<Image
-							src={artist.images[1].url}
+							className={style.profileImage}
+							src={profile.images[1].url}
 							alt=""
 							width="300"
 							height="300"
 						/>
-						<p>{artist.name}</p>
+					}
+				</div>
+				<section className={style.artists}>
+					<Title
+						level="h2"
+						size="small"
+					>
+						Your top artists
+					</Title>
+					<div className={style.grid}>
+						{artists.items.map((artist) => (
+							<div key={artist.name}>
+								<Image
+									src={artist.images[1].url}
+									alt=""
+									width="300"
+									height="300"
+								/>
+								<p className="text--small">{artist.name}</p>
+							</div>
+						))}
 					</div>
-				))}
-				<Title
-					level="h2"
-					size="small"
-				>
-					Your top tracks
-				</Title>
-				{tracks.items.map((track) => (
-					<div key={track.name}>
-						<Image
-							src={track.album.images[1].url}
-							alt=""
-							width="300"
-							height="300"
-						/>
+				</section>
+				<section>
+					<Title
+						level="h2"
+						size="small"
+					>
+						Your top tracks
+					</Title>
+					<div className={style.grid}>
+						{tracks.items.map((track) => (
+							<div key={track.name}>
+								<Image
+									src={track.album.images[1].url}
+									alt=""
+									width="300"
+									height="300"
+								/>
 
-						<p>{track.name}</p>
+								<p className="text--small">{track.name}</p>
+							</div>
+						))}
 					</div>
-				))}
-			</div>
+				</section>
+			</Container>
 		);
 	} catch (error) {
 		redirect("/login");
