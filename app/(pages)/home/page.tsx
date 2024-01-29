@@ -130,7 +130,15 @@ export default async function Home() {
 	} catch (error) {
 		return (
 			<>
-				<p>This app is in development mode. Reach out to me to get access.</p>
+				<Title
+					level="h1"
+					size="big"
+				>
+					Sorry, it seems you do not have access.
+				</Title>
+				<p className="text-small">
+					This app is in development mode. Reach out to me to get access.
+				</p>
 				<a href="/login">Return to login</a>
 			</>
 		);
