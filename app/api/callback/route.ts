@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
 import { getToken } from "@/app/helper/getToken";
 
+export const dynamic = "force-dynamic";
+
 const redirect_uri = process.env.REDIRECT_URI!;
 export async function GET(req: NextRequest, res: Response) {
 	const code = req.nextUrl.searchParams.get("code") as string;

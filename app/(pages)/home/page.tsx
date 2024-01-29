@@ -21,12 +21,17 @@ type Track = {
 };
 
 async function fetchProfile(token: string): Promise<any> {
-	const result = await fetch("https://api.spotify.com/v1/me", {
-		method: "GET",
-		headers: { Authorization: `Bearer ${token}` },
-	});
+	try {
+		const result = await fetch("https://api.spotify.com/v1/me", {
+			method: "GET",
+			headers: { Authorization: `Bearer ${token}` },
+		});
 
-	return await result.json();
+		return await result.json();
+	} catch (error) {
+		console.log("entrou no catch");
+		console.log(error);
+	}
 }
 
 async function fetchArtists(token: string): Promise<Response<Artist>> {
@@ -51,11 +56,9 @@ export default async function Home() {
 	try {
 		const token = cookies().get("token")!.value;
 		const profile = await fetchProfile(token);
+
 		const artists = await fetchArtists(token);
 		const tracks = await fetchTracks(token);
-		/* console.log(profile); */
-		/* console.log(artists); */
-		/* console.log(tracks); */
 
 		return (
 			<Container
@@ -71,7 +74,7 @@ export default async function Home() {
 					</Title>
 
 					{
-						<Image
+						<img
 							className={style.profileImage}
 							src={profile.images[1].url}
 							alt=""
@@ -90,7 +93,7 @@ export default async function Home() {
 					<div className={style.grid}>
 						{artists.items.map((artist) => (
 							<div key={artist.name}>
-								<Image
+								<img
 									src={artist.images[1].url}
 									alt=""
 									width="300"
@@ -111,7 +114,7 @@ export default async function Home() {
 					<div className={style.grid}>
 						{tracks.items.map((track) => (
 							<div key={track.name}>
-								<Image
+								<img
 									src={track.album.images[1].url}
 									alt=""
 									width="300"
