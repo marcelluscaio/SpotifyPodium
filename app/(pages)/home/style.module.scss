@@ -1,8 +1,10 @@
+@use "../../styles/spacing";
+
 .main {
 	padding-block-start: 10vh;
 
 	section {
-		margin-block-end: 5vh;
+		margin-block-end: 15vh;
 	}
 }
 
@@ -11,8 +13,9 @@
 }
 
 .profileImage {
-	width: 90%;
+	width: 75%;
 	max-width: 300px;
+	aspect-ratio: 1;
 	margin-inline: auto;
 	border-radius: 50%;
 	border: 2px solid #000000;
@@ -20,8 +23,8 @@
 
 .grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
-	gap: 5vw;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 120px), 1fr));
+	gap: spacing.$space-3 5vw;
 
 	text-align: center;
 
