@@ -1,0 +1,17 @@
+@use "../../../styles/colors";
+
+.footer {
+	padding-block: 5vh;
+	background-color: colors.$green;
+	text-align: center;
+	color: colors.$white;
+
+	& :is(a, p) {
+		font: inherit;
+	}
+
+	a {
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
+	}
+}
