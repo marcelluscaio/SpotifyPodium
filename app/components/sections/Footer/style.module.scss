@@ -6,6 +6,10 @@
 	text-align: center;
 	color: colors.$white;
 
+	div {
+		font: inherit;
+	}
+
 	& :is(a, p) {
 		font: inherit;
 	}

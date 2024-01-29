@@ -6,6 +6,10 @@
 
 	text-align: center;
 
+	div {
+		font: inherit;
+	}
+
 	a {
 		font: inherit;
 		color: colors.$white;
