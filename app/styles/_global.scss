@@ -1,7 +1,12 @@
 @use "./colors";
 
 body {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
 	background-color: colors.$white;
+
+	min-height: 100vh;
+	min-height: 100svh;
 
 	color: colors.$black;
 	font-family: var(--font-primary);

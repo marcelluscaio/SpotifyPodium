@@ -3,6 +3,7 @@ import style from "./style.module.scss";
 import Title from "@/app/components/ui/Title/Title";
 import { redirect } from "next/navigation";
 import Container from "@/app/components/ui/Container/Container";
+import ButtonLink from "@/app/components/ui/Button/ButtonLink";
 
 type Response<Type> = {
 	items: Type[];
@@ -20,17 +21,12 @@ type Track = {
 };
 
 async function fetchProfile(token: string): Promise<any> {
-	try {
-		const result = await fetch("https://api.spotify.com/v1/me", {
-			method: "GET",
-			headers: { Authorization: `Bearer ${token}` },
-		});
+	const result = await fetch("https://api.spotify.com/v1/me", {
+		method: "GET",
+		headers: { Authorization: `Bearer ${token}` },
+	});
 
-		return await result.json();
-	} catch (error) {
-		console.log("entrou no catch");
-		console.log(error);
-	}
+	return await result.json();
 }
 
 async function fetchArtists(token: string): Promise<Response<Artist>> {
@@ -129,18 +125,21 @@ export default async function Home() {
 		);
 	} catch (error) {
 		return (
-			<>
+			<Container
+				tag="main"
+				className={`${style.main} ${style.error}`}
+			>
 				<Title
 					level="h1"
 					size="big"
 				>
 					Sorry, it seems you do not have access.
 				</Title>
-				<p className="text-small">
+				<p className="text--big">
 					This app is in development mode. Reach out to me to get access.
 				</p>
-				<a href="/login">Return to login</a>
-			</>
+				<ButtonLink href="/login">Return to login</ButtonLink>
+			</Container>
 		);
 	}
 }

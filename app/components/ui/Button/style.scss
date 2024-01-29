@@ -3,8 +3,9 @@
 
 .button {
 	@extend .title--small;
+	display: inline-block;
 
-	padding: 0.5em 1em;
+	padding: 0.25em 1.25em;
 	border-radius: 100vmax;
 	border: 1px solid colors.$black;
 
