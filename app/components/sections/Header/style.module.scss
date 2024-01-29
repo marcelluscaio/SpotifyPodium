@@ -1,0 +1,14 @@
+@use "../../../styles/colors";
+@use "../../../styles/spacing";
+
+.header {
+	padding-block: 1em;
+	background-color: colors.$green;
+
+	text-align: center;
+
+	a {
+		font: inherit;
+		color: colors.$white;
+	}
+}

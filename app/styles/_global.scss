@@ -1,0 +1,8 @@
+@use "./colors";
+
+body {
+	background-color: colors.$white;
+
+	color: colors.$black;
+	font-family: var(--font-primary);
+}

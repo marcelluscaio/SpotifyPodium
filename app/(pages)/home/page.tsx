@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import Image from "next/image";
 import style from "./style.module.scss";
 import Title from "@/app/components/ui/Title/Title";
 import { redirect } from "next/navigation";
@@ -129,6 +128,11 @@ export default async function Home() {
 			</Container>
 		);
 	} catch (error) {
-		redirect("/login");
+		return (
+			<>
+				<p>This app is in development mode. Reach out to me to get access.</p>
+				<a href="/login">Return to login</a>
+			</>
+		);
 	}
 }
